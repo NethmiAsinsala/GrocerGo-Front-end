@@ -1,0 +1,54 @@
+ <!-- Main Content Area -->
+  <main class="flex-1 overflow-x-hidden overflow-y-auto w-full">
+    <!-- Header -->
+    <header class="bg-white shadow-sm h-16 flex items-center justify-between px-6 sticky top-0 z-10">
+      <h2 class="text-xl font-bold text-gray-800">Dashboard Overview</h2>
+      
+      <div class="flex items-center gap-4">
+        <!-- Notifications -->
+        <button class="p-2 text-gray-400 hover:text-emerald-600 transition-colors relative">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
+      </div>
+    </header>
+</main>
+    <!-- Content Placeholder -->
+    <div class="p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <!-- Stats Cards -->
+        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-medium text-gray-500">Total Revenue</h3>
+            <span class="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <h2 class="text-2xl font-bold text-gray-800">RS.24,560</h2>
+            <span class="text-xs text-emerald-600 font-medium">+4.5%</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-medium text-gray-500">Total Orders</h3>
+            <span class="p-2 bg-blue-50 text-blue-600 rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+            </span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <h2 class="text-2xl font-bold text-gray-800">450</h2>
+            <span class="text-xs text-blue-600 font-medium">+12%</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Placeholder content area for routing -->
+      <div class="bg-dashed border-2 border-gray-300 rounded-xl h-96 flex items-center justify-center text-gray-400">
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  
