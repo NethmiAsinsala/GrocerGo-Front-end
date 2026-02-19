@@ -3,9 +3,9 @@
   <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
     <div>
       <h1 class="text-2xl font-bold text-gray-800">Customer Management</h1>
-      <p class="text-gray-500 text-sm mt-1">Manage your store's customer base</p>
+      <p class="text-gray-500 text-sm mt-1">View and manage customer information</p>
     </div>
-    
+
     <div class="flex items-center gap-3">
       <button class="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors shadow-sm font-medium">
         <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,7 +25,7 @@
 
   <!-- Content Card -->
   <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-    <!-- Filters / Search (Optional) -->
+    <!-- Filters / Search -->
     <div class="p-4 border-b border-gray-200 flex items-center justify-between bg-gray-50/50">
       <div class="relative w-full max-w-sm">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -33,13 +33,13 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
-        <input type="text" 
-          class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm transition duration-150 ease-in-out" 
+        <input type="text"
+          class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm transition duration-150 ease-in-out"
           placeholder="Search customers..." />
       </div>
-      
+
       <div class="text-sm text-gray-500">
-        Showing <span class="font-medium text-gray-900">1-5</span> of <span class="font-medium text-gray-900">24</span> customers
+        Showing <span class="font-medium text-gray-900">{{customerList.length}}</span> customers
       </div>
     </div>
 
@@ -52,16 +52,25 @@
               ID
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Customer Info
+              Customer
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Date of Birth
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Salary
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
               Address
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Contact
+              City
             </th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
-              Status
+              Province
+            </th>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Postal Code
             </th>
             <th scope="col" class="px-6 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
               Actions
@@ -69,115 +78,42 @@
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <!-- Row 1 -->
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              #C001
+          <tr *ngFor="let customer of customerList" class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-emerald-600">
+              #{{customer.id}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <div class="h-10 w-10 flex-shrink-0">
-                  <span class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-sm">
-                    JD
-                  </span>
-                </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900">John Doe</div>
-                  <div class="text-sm text-gray-500">john.doe@example.com</div>
-                </div>
-              </div>
+              <div class="text-sm font-medium text-gray-900">{{customer.title}} {{customer.name}}</div>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              123 Main St, Springfield
+              {{customer.dob}}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+              Rs.{{customer.salary | number:'1.2-2'}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              (555) 123-4567
+              {{customer.address}}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{customer.city}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                Active
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                {{customer.province}}
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-emerald-600 hover:text-emerald-900 mr-3">Edit</button>
-              <button class="text-red-600 hover:text-red-900">Delete</button>
-            </td>
-          </tr>
-
-          <!-- Row 2 -->
-          <tr class="hover:bg-gray-50 transition-colors">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              #C002
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <div class="h-10 w-10 flex-shrink-0">
-                  <span class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">
-                    AS
-                  </span>
-                </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900">Alice Smith</div>
-                  <div class="text-sm text-gray-500">alice.smith@example.com</div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              456 Oak Ave, Metropolis
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              (555) 987-6543
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                Active
-              </span>
+              {{customer.postalCode}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-emerald-600 hover:text-emerald-900 mr-3">Edit</button>
-              <button class="text-red-600 hover:text-red-900">Delete</button>
-            </td>
-          </tr>
-          
-          <!-- Row 3 -->
-          <tr class="hover:bg-gray-50 transition-colors">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              #C003
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <div class="h-10 w-10 flex-shrink-0">
-                  <span class="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm">
-                    BJ
-                  </span>
-                </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900">Bob Johnson</div>
-                  <div class="text-sm text-gray-500">bob.j@example.com</div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              789 Pine Ln, Gotham
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              (555) 456-7890
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                Inactive
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-emerald-600 hover:text-emerald-900 mr-3">Edit</button>
-              <button class="text-red-600 hover:text-red-900">Delete</button>
+              <button class="text-emerald-600 hover:text-emerald-900">View Details</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Pagination (Optional) -->
+    <!-- Pagination -->
     <div class="bg-white px-4 py-3 border-t border-gray-200 flex items-center justify-between sm:px-6">
       <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
@@ -209,5 +145,3 @@
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>
