@@ -112,7 +112,7 @@
               {{customer.postalCode}}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-emerald-600 hover:text-emerald-900">View Details</button>
+              <button (click)="deleteCustomer(customer.id)" class="text-emerald-600 hover:text-emerald-900">❌</button>
             </td>
           </tr>
         </tbody>

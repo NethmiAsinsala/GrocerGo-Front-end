@@ -54,4 +54,29 @@ export class Item {
         }
       });
     }
+    deleteItem(code:any){
+        this.itemList = this.itemList.filter(c => c.code !== code);
+        Swal.fire({
+          title : "Are you sure?",
+          text : "You won't be able to revert this!",
+          icon : "warning",
+          showCancelButton:true,
+          confirmButtonColor:"#3085d6",
+          cancelButtonColor:"#d33",
+          confirmButtonText:"Yes, delete it!"
+        }).then((result) =>{
+          if(result.isConfirmed){
+            this.http.delete("http://localhost:8080/item/delete-by-id"+ code).subscribe(data =>{
+              if(data===true){
+                Swal.fire({
+                  title:"Deleted!",
+                  text:"Your file has been deleted!",
+                  icon:"success"
+                });
+                this.getAll();
+              }
+            })
+          }
+        })
+      }
 }
